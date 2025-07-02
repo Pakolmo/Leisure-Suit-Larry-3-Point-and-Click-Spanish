@@ -1,0 +1,350 @@
+;;; Sierra Script 1.0 - (do not remove this comment)
+(script# 640)
+(include sci.sh)
+(use Main)
+(use n021)
+(use Class_255_0)
+(use Cycle)
+(use Game)
+(use User)
+(use Feature)
+(use Obj)
+
+(public
+	rm640 0
+)
+
+(local
+	local0
+)
+(instance rm640 of Rm
+	(properties
+		picture 640
+	)
+	
+	(method (init)
+		(Load rsSOUND 640)
+		(Load rsSOUND 120)
+		(Load rsPIC 99)
+		(super init:)
+		(gAddToPics
+			add: atpChest
+			add: atpWheel
+			add: atpBarrel1
+			add: atpBarrel2
+			add: atpBarrel3
+			add: atpBertaButt
+			doit:
+		)
+		(aCamera init:)
+		(aRosella init:)
+		(aRoberta init:)
+		(proc0_2 aLarry 0 720)
+		(aLarry posn: 8 174 init: stopUpd:)
+		(self setScript: RoomScript)
+		(= global101 (gGame setSpeed: 6))
+		(proc0_1 0)
+		(gEgo posn: 12 183 init: stopUpd:)
+		(proc0_3)
+		(User canInput: 0 mapKeyToDir: 0)
+	)
+)
+
+(instance RoomScript of Script
+	(properties)
+	
+	(method (changeState newState)
+		(proc21_1 self newState 1 2)
+		(switch (= state newState)
+			(0 (= seconds 3))
+			(1
+				(proc255_0 640 0)
+				(= seconds 2)
+			)
+			(2
+				(aCamera setStep: 1 1 setMotion: MoveTo 96 189 self)
+			)
+			(3
+				(proc255_0 640 1)
+				(aCamera setMotion: MoveTo 47 238 self)
+			)
+			(4
+				(aCamera stopUpd:)
+				(proc255_0 640 2)
+				(= seconds 2)
+			)
+			(5
+				(proc255_0 640 3)
+				(gTheMusic fade:)
+				(= seconds 2)
+			)
+			(6
+				(proc255_0 640 4)
+				(aRoberta setCycle: End)
+				(gTheMusic number: 640 loop: 1 play:)
+				(= seconds 3)
+			)
+			(7
+				(aRosella
+					setStep: 2 2
+					moveSpeed: 1
+					cycleSpeed: 1
+					setMotion: MoveTo 177 86 self
+				)
+			)
+			(8
+				(aRosella
+					moveSpeed: 0
+					cycleSpeed: 0
+					setLoop: 5
+					setStep: 2 4
+					setMotion: MoveTo 177 123 self
+				)
+			)
+			(9
+				(aRoberta setCycle: Beg)
+				(= cycles 15)
+			)
+			(10
+				(aRosella setLoop: 0)
+				(gTheMusic fade:)
+				(switch (++ local0)
+					(1 (proc255_0 640 5))
+					(2 (proc255_0 640 6))
+					(3
+						(aRosella stopUpd:)
+						(proc255_0 640 7)
+						(++ state)
+					)
+				)
+				(= cycles 22)
+			)
+			(11
+				(aRosella
+					setLoop: 3
+					setStep: 2 1
+					moveSpeed: 1
+					cycleSpeed: 1
+					setMotion: MoveTo 224 115 self
+				)
+				(if (< local0 3) (= state 5))
+			)
+			(12
+				(aRosella cycleSpeed: 1 setLoop: 2 setCycle: Fwd)
+				(= seconds 2)
+			)
+			(13
+				(proc255_0 640 8)
+				(= seconds 2)
+			)
+			(14
+				(proc255_4 640 9 (if (>= global88 3) {on_} else {}))
+				(aRosella setLoop: 1)
+				(= seconds 2)
+			)
+			(15
+				(proc255_0 640 10)
+				(proc255_0 640 11)
+				(aRoberta setCycle: End self)
+			)
+			(16
+				(proc255_0 640 12)
+				(aRosella setLoop: 2)
+				(= seconds 3)
+			)
+			(17
+				(aRoberta setLoop: 2 setCycle: Fwd)
+				(= seconds 3)
+			)
+			(18
+				(proc255_0 640 13)
+				(proc255_0 640 14)
+				(aRoberta setCel: 0)
+				(aRosella loop: 0 stopUpd:)
+				(aCamera setMotion: MoveTo 41 244 self)
+			)
+			(19
+				(gEgo setMotion: MoveTo 227 187 self)
+				(= cycles 9)
+			)
+			(20
+				(aLarry setMotion: MoveTo 239 176 self)
+				(= cycles 22)
+			)
+			(21
+				(proc255_0 640 15)
+				(= cycles 11)
+			)
+			(22
+				(proc255_0 640 16)
+				(gTheMusic number: 699 loop: -1 play:)
+				(aRoberta setCycle: Fwd)
+			)
+			(23
+				(proc255_0 640 17)
+				(aRoberta setCel: 0)
+				(= seconds 3)
+			)
+			(24
+				(aLarry loop: 2 forceUpd: stopUpd:)
+				(proc255_0 640 18)
+				(aRoberta setCycle: Fwd)
+				(= seconds 2)
+			)
+			(25
+				(proc255_0 640 19)
+				(aRoberta setCel: 0)
+				(= seconds 2)
+			)
+			(26
+				(proc255_0 640 20)
+				(proc255_0 640 21 67 10 -1 70 290)
+				(proc255_0 640 22)
+				(= seconds 2)
+			)
+			(27
+				(proc255_0 640 23)
+				(proc255_0 640 24)
+				(= seconds 3)
+			)
+			(28
+				(proc255_0 640 25)
+				(= seconds 3)
+			)
+			(29
+				(proc255_0 640 26)
+				(global2 drawPic: 99 6)
+				(gCast eachElementDo: #hide)
+				(= cycles 22)
+			)
+			(30
+				(proc255_0 640 27)
+				(gTheMusic fade:)
+				(= seconds 6)
+			)
+			(31
+				(gTheMusic number: 120 loop: -1 play:)
+				(= seconds 3)
+			)
+			(32
+				(proc255_0 640 28 25 4 88)
+				(= seconds 5)
+			)
+			(33
+				(proc255_0 640 29)
+				(= seconds 3)
+			)
+			(34 (global2 newRoom: 650))
+		)
+	)
+)
+
+(instance aLarry of Act
+	(properties)
+)
+
+(instance atpChest of PV
+	(properties
+		y 142
+		x 89
+		view 640
+		signal $4000
+	)
+)
+
+(instance atpWheel of PV
+	(properties
+		y 141
+		x 159
+		view 640
+		cel 1
+		priority 10
+		signal $4000
+	)
+)
+
+(instance atpBarrel1 of PV
+	(properties
+		y 137
+		x 250
+		view 640
+		cel 2
+		priority 9
+		signal $4000
+	)
+)
+
+(instance atpBarrel2 of PV
+	(properties
+		y 134
+		x 47
+		view 640
+		cel 3
+		priority 9
+		signal $4000
+	)
+)
+
+(instance atpBarrel3 of PV
+	(properties
+		y 135
+		x 209
+		view 640
+		cel 4
+		priority 9
+		signal $4000
+	)
+)
+
+(instance atpBertaButt of PV
+	(properties
+		y 166
+		x 257
+		view 643
+		loop 3
+		priority 15
+	)
+)
+
+(instance aRoberta of Prop
+	(properties
+		y 166
+		x 257
+		view 643
+		loop 1
+	)
+	
+	(method (init)
+		(super init:)
+		(self ignoreActors: setPri: 15)
+	)
+)
+
+(instance aCamera of Act
+	(properties
+		y 189
+		x 120
+		view 640
+		loop 1
+		illegalBits $0000
+	)
+)
+
+(instance aRosella of Act
+	(properties
+		y 126
+		x 177
+		view 644
+	)
+	
+	(method (init)
+		(super init:)
+		(self
+			ignoreActors:
+			illegalBits: 0
+			setStep: 2 1
+			setCycle: Walk
+			setLoop: 4
+		)
+	)
+)

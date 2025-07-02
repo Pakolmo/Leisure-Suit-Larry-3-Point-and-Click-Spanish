@@ -1,0 +1,292 @@
+;;; Sierra Script 1.0 - (do not remove this comment)
+(script# 585)
+(include sci.sh)
+(use Main)
+(use n021)
+(use Class_255_0)
+(use DPath)
+(use Cycle)
+(use Game)
+(use User)
+(use Feature)
+(use Obj)
+
+(public
+	rm585 0
+)
+
+(instance rm585 of Rm
+	(properties
+		picture 585
+	)
+	
+	(method (init)
+		(proc0_3)
+		(Load rsSOUND 485)
+		(Load rsSCRIPT 964)
+		(Load rsPIC 99)
+		(super init:)
+		(aOldMan init:)
+		(aWhipper init:)
+		(aDrummer1 init:)
+		(aDrummer2 init:)
+		(aSlave init:)
+		(aCornMan init:)
+		(aWoman init:)
+		(gEgo
+			illegalBits: 0
+			ignoreActors:
+			view: 582
+			setLoop: 5
+			setCycle: Walk
+			setStep: 2 2
+			setPri: -1
+			posn: 332 161
+			init:
+		)
+		(self setScript: RoomScript)
+		(User canInput: 0 mapKeyToDir: 0)
+	)
+)
+
+(instance RoomScript of Script
+	(properties)
+	
+	(method (doit)
+		(super doit:)
+		(if (> global87 16)
+			(switch (Random 1 22)
+				(1 (aOldMan setCycle: Fwd))
+				(2 (aOldMan stopUpd:))
+				(3 (aWhipper setCycle: End))
+				(4 (aWhipper stopUpd:))
+				(5 (aDrummer1 setCycle: Fwd))
+				(6 (aDrummer1 stopUpd:))
+				(7 (aDrummer2 setCycle: Fwd))
+				(8 (aDrummer2 stopUpd:))
+			)
+		)
+	)
+	
+	(method (changeState newState)
+		(proc21_1 self newState 1 2)
+		(switch (= state newState)
+			(0)
+			(1
+				(proc255_0 585 0)
+				(gEgo
+					setMotion:
+						DPath
+						343
+						162
+						343
+						162
+						294
+						149
+						222
+						112
+						206
+						80
+						201
+						72
+						201
+						72
+						197
+						58
+						190
+						48
+				)
+				(aWoman
+					setMotion: DPath 329 166 306 154 265 139 207 107 195 78 192 63 187 54 self
+				)
+			)
+			(2
+				(global2 drawPic: 99 6)
+				(gCast eachElementDo: #hide)
+				(= seconds 3)
+			)
+			(3
+				(proc255_0 585 1)
+				(= seconds 3)
+			)
+			(4
+				(proc255_0 585 2 67 -1 144)
+				(= seconds 3)
+			)
+			(5
+				(proc255_0 585 3)
+				(proc255_0 585 4)
+				(= seconds 3)
+			)
+			(6
+				(proc255_0 585 5 67 -1 144)
+				(= seconds 3)
+			)
+			(7
+				(proc255_0 585 6)
+				(= seconds 3)
+			)
+			(8
+				(gTheMusic number: 485 loop: -1 play:)
+				(DisposeScript 964)
+				(global2 newRoom: 590)
+			)
+		)
+	)
+)
+
+(instance aBowl of View
+	(properties
+		y 114
+		x 284
+		view 584
+		loop 7
+	)
+	
+	(method (init)
+		(super init:)
+		(self ignoreActors: stopUpd:)
+	)
+)
+
+(instance aDrummer1 of Prop
+	(properties
+		y 55
+		x 148
+		view 585
+	)
+	
+	(method (init)
+		(super init:)
+		(self setCycle: Fwd stopUpd:)
+	)
+)
+
+(instance aDrummer2 of Prop
+	(properties
+		y 57
+		x 255
+		view 585
+		loop 1
+	)
+	
+	(method (init)
+		(super init:)
+		(self setCycle: Fwd stopUpd:)
+	)
+)
+
+(instance aOldMan of Prop
+	(properties
+		y 107
+		x 287
+		view 584
+		loop 6
+	)
+	
+	(method (init)
+		(super init:)
+		(self stopUpd:)
+	)
+)
+
+(instance aWhipper of Prop
+	(properties
+		y 138
+		x 86
+		view 584
+		loop 1
+	)
+	
+	(method (init)
+		(super init:)
+		(self stopUpd:)
+	)
+)
+
+(instance aSlave of Prop
+	(properties
+		y 135
+		x 134
+		view 585
+		loop 2
+	)
+	
+	(method (init)
+		(super init:)
+		(self setCycle: Fwd stopUpd:)
+	)
+)
+
+(instance aCornMan of Act
+	(properties
+		y 89
+		x 89
+		view 584
+		illegalBits $0000
+	)
+	
+	(method (init)
+		(super init:)
+		(self
+			setPri: 3
+			setLoop: 2
+			setCycle: Walk
+			ignoreActors:
+			setScript: ManScript
+		)
+	)
+)
+
+(instance ManScript of Script
+	(properties)
+	
+	(method (changeState newState)
+		(proc21_1 self newState 1 2)
+		(switch (= state newState)
+			(0
+				(aCornMan setMotion: MoveTo 159 87 self)
+			)
+			(1
+				(aCornMan setMotion: DPath 170 90 233 100 261 113 self)
+			)
+			(2
+				(aCornMan setPri: -1 setLoop: 3 cel: 0 setCycle: End self)
+			)
+			(3
+				(aCornMan setLoop: 4 setCycle: End self)
+				(aBowl init:)
+			)
+			(4
+				(aCornMan
+					setCycle: Fwd
+					setLoop: 5
+					setMotion: DPath 233 100 170 90 122 84 self
+				)
+			)
+			(5
+				(RoomScript changeState: 1)
+				(aCornMan setPri: 3 setMotion: MoveTo 84 91 self)
+			)
+			(6 (aCornMan hide:))
+		)
+	)
+)
+
+(instance aWoman of Act
+	(properties
+		y 163
+		x 330
+		view 583
+	)
+	
+	(method (init)
+		(super init:)
+		(self
+			setStep: 2 2
+			setLoop: 5
+			setCycle: Walk
+			illegalBits: 0
+		)
+	)
+)
